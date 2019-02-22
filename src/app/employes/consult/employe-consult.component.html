@@ -1,0 +1,84 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20" *ngIf="employe">
+    <div class="row">
+        <span class="title-page">CONSULTATION EMPLOYE</span>
+      </div>
+  <div class="btn-group" role="group" aria-label="...">
+    <button class="btn btn-default" (click)="modifier()" type="button">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</button>
+    <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+  </div>
+  <br />
+  <br />
+  <ol class="breadcrumb">
+    <li>Employe</li>
+    <li class="active">Consultation</li>
+  </ol>
+  <div class="panel panel-info">
+    <div class="panel-body">
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Actif :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+              <span class="comment" *ngIf="employe.actif">Actif</span>
+            <span class="comment" *ngIf="!employe.actif">Non actif</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Nom :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{employe.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Prénom :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{employe.prenom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+            <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Identifiant :</label>
+            <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+              <span class="comment">{{employe.identifiant}}</span>
+            </p>
+          </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Profil :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{employe.profil}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-element">
+              <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Téléphone :</label>
+              <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+                <span class="comment">{{employe.telephone}}</span>
+              </p>
+            </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Adresse :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{employe.adresse}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+            <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Date naissance :</label>
+            <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+              <span class="comment">  {{employe.dateNaissance | date: 'dd/MM/yyyy'}}</span>
+            </p>
+          </div>
+          <div class="form-element">
+            <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Email :</label>
+            <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+              <span class="comment">  {{employe.email}}</span>
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

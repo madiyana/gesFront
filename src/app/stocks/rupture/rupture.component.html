@@ -1,0 +1,45 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20" *ngIf="!stock">
+  <span id="title-page">LISTE DES ARTCLES EN RUPTURE DE STOCK</span>
+
+  <div class="row">
+     <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+      <thead>
+        <tr>
+          <th class="sortable col-md-2 sort-desc">
+            Nom
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+           Catégorie
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            Référence
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+             Date entrée
+            </th>
+          <th class="sortable col-md-2 sort-desc">
+            Quantité restante
+          </th>
+        </tr>
+      </thead>
+      <tbody class="clickable">
+        <tr *ngFor="let rupture of mf.data">
+          <td>{{rupture.nomArticle}}</td>
+          <td>{{rupture.nomCategorie}}</td>
+          <td>{{rupture.reference}}</td>
+          <td>{{rupture.dateEntree}}</td>
+          <td>{{rupture.quantite}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

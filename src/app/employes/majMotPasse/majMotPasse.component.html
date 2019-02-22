@@ -1,0 +1,34 @@
+﻿<ngx-alert></ngx-alert>
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <h1 class="logo-name">D+</h1>
+    </div>
+    <div>
+        <h3>Bienvenue à DIWAAN+ </h3>
+        <h3 style="color: white">Veuillez mettre à jour de votre mot de passe.</h3>
+
+         <form class="m-t" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+            <!--<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !identifiant.valid }">
+                <input type="text" [disabled]=true class="form-control" name="identifiant" [(ngModel)]="employes.identifiant" #identifiant="ngModel"
+                    required />
+             </div>-->
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" placeholder="Nouveau mot de passe" #password="ngModel"
+                    required />
+                <div *ngIf="f.submitted && !password.valid" class="help-block"><strong style="color:red">Mot de passe est obligatoire</strong></div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password1.valid }">
+                <input type="password" class="form-control" name="password1" [(ngModel)]="model.password1" placeholder="Confirmer mot de passe" #password1="ngModel"
+                    required />
+                <div *ngIf="f.submitted && !password1.valid" class="help-block"><strong style="color:red">Mot de passe est obligatoire</strong></div>
+            </div>
+            <div class="form-group">
+                    <button (click)="updatePassword()" type="submit" class="btn btn-primary">Valider</button>
+                     <a [routerLink]="['/login']" class="btn btn-danger">Annuler</a>
+                </div>
+        </form>
+        <p class="m-t">
+            <small>Une Application développée par Toubasoft&copy;2017</small>
+        </p>
+    </div>
+</div>

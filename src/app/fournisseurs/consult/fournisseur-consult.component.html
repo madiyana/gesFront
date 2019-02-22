@@ -1,0 +1,50 @@
+<ngx-alert></ngx-alert>
+<div class="col-xs-20" *ngIf="fournisseur">
+    <div class="row">
+        <span class="title-page">CONSULTATION FOURNISSEUR</span>
+      </div>
+<div class="btn-group" role="group" aria-label="...">
+    <button class="btn btn-default" (click)="modifier()" type="button">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</button>
+    <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+  </div>
+  <br />
+  <br />
+  <ol class="breadcrumb">
+    <li>Fournisseur</li>
+    <li class="active">Consultation</li>
+  </ol>
+  <div class="panel panel-info">
+    <div class="panel-body">
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Nom :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{fournisseur.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+            <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Téléphone :</label>
+            <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+              <span class="comment">{{fournisseur.telephone}}</span>
+            </p>
+          </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Email :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{fournisseur.email}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Adresse :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{fournisseur.adresse}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

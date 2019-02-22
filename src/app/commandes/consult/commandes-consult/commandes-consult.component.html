@@ -1,0 +1,123 @@
+<ngx-alert></ngx-alert>
+<div class="col-xs-20" *ngIf="commande">
+    <div class="row">
+        <span class="title-page">CONSULTATION COMMANDE</span>
+      </div>
+  <div class="btn-group" role="group" aria-label="...">
+    <button *ngIf="commande.etatCommande == 'EN_COURS'" class="btn btn-default" (click)="modifier()" type="button">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</button>
+    <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+    <button *ngIf="commande.etatCommande == 'EN_COURS'" class="btn btn-secondary" (click)="envoyer()" type="button">
+      <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Envoyer</button>
+    <button *ngIf="commande.etatCommande == 'ENVOYE'" class="btn btn-secondary" (click)="receptionne()" type="button">
+      <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Receptionner</button>
+    <button *ngIf="commande.etatCommande == 'EN_COURS'" class="btn btn-danger" type="submit" data-toggle="modal" data-target="#exampleModal">
+      <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Annuler commande</button>
+  </div>
+  <br />
+  <br />
+  <ol class="breadcrumb">
+    <li>Commande</li>
+    <li class="active">Consultation</li>
+  </ol>
+
+
+  <div class="panel panel-info">
+    <div class="panel-body">
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">N° commande :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{commande.id}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-4">Date création commande :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{commande.dateCommande}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Commandé par :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{commande.employes.nom}} {{commande.employes.prenom}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Etat commande :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment" *ngIf="commande.etatCommande == 'EN_COURS'">En cours</span>
+            <span class="comment" *ngIf="commande.etatCommande == 'ANNULE'">Annulé</span>
+            <span class="comment" *ngIf="commande.etatCommande == 'ENVOYE'">Envoyé</span>
+            <span class="comment" *ngIf="commande.etatCommande == 'RECEPT'">Réceptionné</span>
+
+          </p>
+        </div>
+        <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Observation :</label>
+        <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+          <span class="comment">{{commande.observation}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="hr-line-dashed"></div>
+  <div class="center">
+    <span style="width:100%;text-align:center;"> Liste des articles commandés</span>
+  </div>
+  <table class="table table-striped" [mfData]="commande.articlesCommande" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy"
+    [(mfSortOrder)]="sortOrder">
+    <thead>
+      <tr>
+        <th class="sortable col-md-2 sort-desc">
+          Aricles
+        </th>
+        <th class="sortable col-md-2 sort-desc">
+          Fournisseur
+        </th>
+        <th class="sortable col-md-2 sort-desc">
+          Nb. Commandés
+        </th>
+
+      </tr>
+    </thead>
+    <tbody class="clickable">
+      <tr *ngFor="let commandeArticle of mf.data; let indComande = index">
+        <td>{{commandeArticle?.articles?.nom}}</td>
+        <td>{{commandeArticle?.fournisseurs?.nom}}</td>
+        <td>{{commandeArticle?.nbreArticleCommande}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="10">
+          <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Annulation de commande</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Voulez vous annuler cette commande ?
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="annulerCommande()" data-dismiss="modal">Oui</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

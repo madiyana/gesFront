@@ -1,0 +1,86 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+    <div class="row">
+        <span class="title-page">CREATION STOCK ARTICLE</span>
+      </div>
+  <div class="btn-group" role="group" aria-label="...">
+    <button class="btn btn-primary" (click)="enregistrer()" type="button">
+      <span class="glyphicon glyphicon-saved" aria-hidden="true"></span> Enregister</button>
+    <button class="btn btn-default" (click)="vider()" type="button">
+      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Vider les champs</button>
+    <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+  </div>
+  <br />
+  <ol class="breadcrumb">
+    <li>Stock</li>
+    <li class="active"> Création</li>
+  </ol>
+
+  <div class="row">
+    <!-- creation des articles  -->
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Commandes</label>
+              <div class="col-sm-3">
+                <ng-select [items]="commandes" bindLabel="id" (removed)="initList()" (change)="loadArticleFournisseur()" placeholder="Choisissez une commande" [(ngModel)]="stock.commandes"></ng-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Article
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <ng-select [items]="articles" bindLabel="nom" placeholder="Choisissez un article" [(ngModel)]="stock.articles"></ng-select>
+              </div>
+              <label class="col-sm-2 control-label">Fournisseur
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <ng-select [items]="fournisseurs" bindLabel="nom" placeholder="Choisissez un fournisseur" [(ngModel)]="stock.fournisseurs"></ng-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Quantité commandé
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="stock.quantite" class="form-control" name="quantite">
+              </div>
+              <label class="col-sm-2 control-label">Date d'entrée
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <div class="input-group">
+                  <input type="text" #input1 placeholder="jour" maxlength="2" (input)="onInputEntry($event, input2)" [(ngModel)]="jour" class="form-control"
+                    style="width: 30%">
+                  <input type="text" #input2 placeholder="mois" maxlength="2" (input)="onInputEntry($event, input3)" [(ngModel)]="mois" class="form-control"
+                    style="width: 30%">
+                  <input type="text" #input3 placeholder="annee" maxlength="4" [(ngModel)]="annee" class="form-control" style="width: 40%">
+                </div>
+                <!-- <input type="text" [(ngModel)]="stock.dateEntree" class="form-control" name="dateEntree"> -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Nb. Article defectueux
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="stock.nbArticlesDefectueux" class="form-control" name="nbArticlesDefectueux">
+              </div>
+              <label class="col-sm-2 control-label">Observation</label>
+              <div class="col-sm-3">
+                  <textarea class="form-control nice-margin" rows="3" name="observation" [(ngModel)]="stock.observation"></textarea>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+          </div>
+          <!--  </div> -->
+        </div>
+      </div>
+    </div>
+  </div>

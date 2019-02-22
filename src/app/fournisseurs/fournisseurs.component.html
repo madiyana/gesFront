@@ -1,0 +1,82 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20" *ngIf="!fournisseurs">
+    <span class="title-page">LISTE DES FOURNISSEURS</span>
+   <div class="row">
+    <div class="col-xs-20 pgd-toolbar">
+      <div class="btn-group" role="group" aria-label="....">
+        <button class="btn btn-default" (click)="creer()" type="submit">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Créer</button>
+        <button class="btn btn-default" (click)="consulterLigneSelectionne()" type="submit">
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Consulter</button>
+        <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#exampleModal">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer</button>
+      <!--   <button class="btn btn-default" (click)="idSelect = []" type="submit">
+          <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Déselectionner</button> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="text" class="form-control" [(ngModel)]="texteRecherche" name="texteRecherche" placeholder="Recherche" />
+     <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+      <thead>
+        <tr>
+          <th class="sortable col-md-3 sort-desc">
+            <mfDefaultSorter by="nom">Dénomination  / Raison sociale</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-3 sort-desc">
+            <mfDefaultSorter by="telephone">Téléphone</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-3 sort-desc">
+            <mfDefaultSorter by="email">Email</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-3 sort-desc">
+            <mfDefaultSorter by="adresse">Adresse</mfDefaultSorter>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="clickable">
+        <tr *ngFor="let fournisseur of mf.data" (click)="ligneSelect(fournisseur.id)" (dblclick)="afficher(fournisseur.id)" [ngClass]="{info: idSelect.indexOf(fournisseur.id) != -1}">
+          <td>{{fournisseur.nom}}</td>
+           <td>{{fournisseur.telephone}}</td>
+          <td>{{fournisseur.email}}</td>
+          <td>{{fournisseur.adresse}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    *ngIf="this.idSelect.length > 0">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Suppression fournisseur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="this.idSelect.length == 1">
+          Voulez vous supprimer ce fournisseur ?
+        </div>
+        <div class="modal-body" *ngIf="this.idSelect.length > 1">
+          Voulez vous supprimer ces fournisseurs ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="supprimer()" data-dismiss="modal">Oui</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

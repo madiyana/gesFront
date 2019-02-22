@@ -1,0 +1,47 @@
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-5" style="background-color:lavender;">
+        <div style="background-color:lavender; padding-bottom: 150px">
+        <form [formGroup]="group" id="venteForm" (submit)="submit($event)">
+          &nbsp;<input  type="text" placeholder="code produit" formControlName="reference"(input)="addProduit()" style="width: 85%; height: 60px; font-size: 24px" #reference>&nbsp;
+          <input type="text" [readOnly]="true" formControlName="quantite" placeholder="1" style="width: 10%; height: 60px; font-size: 24px">
+          <button type="submit" form="venteForm" [hidden]=true >Ajout</button>
+          </form>        <br />
+
+          <app-clavier (keyboardAdd)="changeQte($event)"></app-clavier>
+        </div>
+      </div>
+
+      <div class="col-sm-7">
+        <span style="font-size: 35px">Total : {{montantTotal}} Fcfa</span>
+        <div style="background-color:lavender">
+            <table class="table table-bordered table-condensed table-striped table-hover" [mfData]="list" #mf="mfDataTable"  style=" display: block; width: 100%; height: 360px; overflow-y: scroll ">
+            <tr>
+              <th style="width: 50%;">Nom</th>
+              <th  style="width: 20%;">Prix</th>
+              <th  style="width: 15%;">Qte</th>
+              <th  style="width: 15%;">Total</th>
+              <th></th>
+            </tr>
+            <tbody class="clickable">
+                <tr *ngFor="let art of list; let index = index;" (click)="displayFolder($event, art)" >
+                  <td>{{art.nom}}</td>
+                  <td>{{art.prix}}</td>
+                  <td>{{art.quantite}}</td>
+                  <td>{{art.quantite * art.prix}}</td>
+                  <td><span style="color: red; cursor: pointer" (click)="removeLine(index)">X</span></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      <app-encaisse [montantTotal]="montantTotal" [(list)]="list" (finishPay)="reinitVente()"></app-encaisse>
+      </div>
+    </div>
+
+      <div class="row"> <br />
+            <div  style="font-size: 50px; color: white;background-color: darkcyan; width:100%; height: 250px;">
+              AUTRES INFOS A AJOUTER ????????????,
+          </div>
+      </div>
+  </div>

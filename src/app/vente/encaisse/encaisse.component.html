@@ -1,0 +1,19 @@
+<form
+  [formGroup]="group"
+  id="encaisseForm"
+  (submit)="submit($event)"
+  [hidden]="montantTotal <= 0"
+><input
+    type="text"
+    style="width: 50%; font-size: 25px"
+    placeholder="Encaissement"
+    (input)="reste()"
+    formControlName="montantEncaisse"
+    [readonly]="montantTotal <= 0"
+  />
+
+  <span *ngIf="rendu > 0" style="padding-left: 10px; font-size: 25px;"> Rendu : {{ rendu }} Fcfa </span>  <br />
+  <hr />
+  <button type="button" style="width: 30%" (click)="payer()" [disabled]="rendu < 0"  class="btn btn-lg btn-primary">PAYER</button>&nbsp;
+  <button type="button" style="width: 30%" (click)="cancelVente()" class="btn btn-danger btn-lg">ANNULER VENTE</button>&nbsp;
+</form>

@@ -1,0 +1,154 @@
+﻿<div id="wrapper" *ngIf="authentificationService.isAuthenticated();else login">
+    <nav class="navbar-default navbar-static-side" role="navigation" >
+      <span style="color: antiquewhite; font-weight: bolder; text-align: center">{{infoUser}}
+        </span>
+        <div class="sidebar-collapse" *ngIf="authentificationService.getProfilUSer() === 'admin'">
+            <!-- mod Menu vertical fixe gauche -->
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <span>
+                        <img alt="image" width="100%" src="assets/img/logo.png" />
+                    </span>
+                    <div class="logo-element">D+</div>
+                </li>
+                <li>
+                    <!-- Dashboard -->
+                    <a href="tbord.html">
+                        <i class="fa fa-th-large"></i>
+                        <span class="nav-label">Tableau de bord</span>
+                    </a>
+                </li>
+                <li [routerLinkActive]="['active']">
+                  <a [routerLink]="['/listeVente']">
+                      <i class="fa fa-th-large"></i>
+                      <span class="nav-label">Ventes</span>
+                  </a>
+                </li>
+
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/articles']" >
+                        <i class="fa fa-qrcode"></i>
+                        <span class="nav-label">Articles</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/categories']">
+                        <i class="fa fa-barcode"></i>
+                        <span class="nav-label">Catégories</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/commandes']">
+                        <i class="fa fa-shopping-basket"></i>
+                        <span class="nav-label">Commandes</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/employes']">
+                        <i class="fa fa-user-circle-o"></i>
+                        <span class="nav-label">Employes</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/fournisseurs']">
+                        <i class="fa fa-car"></i>
+                        <span class="nav-label">Fournisseurs</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/rayons']">
+                        <i class="fa fa-shopping-basket"></i>
+                        <span class="nav-label">Rayons</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/stocks']">
+                    <i class="fa fa-spinner"></i>
+                    <span class="nav-label">Stocks</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a [routerLink]="['/stocks/ruptureStock']">Rupture de stock</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header" *ngIf="authentificationService.getProfilUSer() === 'admin'">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary ">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <button type="button" class=" btn btn-danger btn-md" (click)="logout(authentificationService.infoUser())">
+                                <span class="glyphicon glyphicon-log-out"></span> Deconnexion
+                            </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--
+
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="#">
+                                <span class="label label-success pull-right">Créer facture</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-success pull-right">Journal ventes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-success pull-right">Dépot banque</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-success pull-right">Etat Caisse</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="label label-primary pull-right">ADMIN</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a [routerLink]="['/login']">
+                                        <i class="fa fa-sign-out"></i> Deconnexion</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        -->
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<ng-template #login>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

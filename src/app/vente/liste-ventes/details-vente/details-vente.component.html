@@ -1,0 +1,45 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+  <span class="title-page">DETAIL DE LA VENTE NUMERO {{id}}</span>
+  <div class="row">
+    <div class="col-xs-20 pgd-toolbar">
+     </div>
+  </div>
+
+  <div class="row">
+     <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+      <thead>
+        <tr>
+          <th class="sortable col-md-2 sort-desc">
+            Article
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            Référence
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+              Prix unitaire
+            </th>
+          <th class="sortable col-md-2 sort-desc">
+            Quantité
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vente of mf.data"  [ngClass]="{info: idSelect.indexOf(vente.id) != -1}">
+          <td>{{vente?.nom}}</td>
+          <td>{{vente?.reference}}</td>
+          <td>{{vente?.prix}}</td>
+          <td>{{vente?.quantite}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

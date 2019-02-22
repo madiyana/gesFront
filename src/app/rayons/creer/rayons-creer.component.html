@@ -1,0 +1,41 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+    <div class="row">
+        <span class="title-page">CREATION RAYON</span>
+      </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-primary" (click)="enregistrer()" type="button">
+        <span class="glyphicon glyphicon-saved" aria-hidden="true"></span> Enregister</button>
+        <button class="btn btn-default" (click)="vider()" type="button">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Vider les champs</button>
+        <button class="btn btn-default" (click)="retourListe()" type="button">
+        <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+    </div>
+    <br />
+    <ol class="breadcrumb">
+        <li>Rayons</li>
+        <li class="active"> Création</li>
+    </ol>
+    <div class="row">
+
+        <!-- creation des articles  -->
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nom
+                  <span style="color : red">*</span>
+                </label>
+                            <div class="col-sm-3">
+                                <input type="text" [(ngModel)]="rayon.nom" class="form-control" name="nom" required>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

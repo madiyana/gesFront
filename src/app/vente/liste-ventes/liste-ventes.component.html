@@ -1,0 +1,59 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+  <span class="title-page">RECAPITULATIF DES VENTES</span>
+<hr />
+<div class="row">
+    <form (submit)="searchVente()">
+
+      <div class="col-xs-2">
+          <input type="date" class="form-control" [(ngModel)]="dateDebut" name="dateDebut" placeholder="Date de début" />
+      </div>
+    <div class="col-xs-2">
+        <input type="date" class="form-control" [(ngModel)]="dateFin" name="dateFin" placeholder="Date de fin" />
+    </div>
+    <div class="col-xs-2">
+      <input type="text" class="form-control" [(ngModel)]="texteRecherche" name="texteRecherche" placeholder="Employé" />
+    </div>
+    <div class="col-xs-2">
+        <button type="submit" class="btn btn-primary" >Rechercher</button>
+      </div>
+    </form>
+  </div>
+  <hr />
+  <div class="row">
+     <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+      <thead>
+        <tr>
+          <th class="sortable col-md-2 sort-desc">
+            Numéro vente
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            Date vente
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+              Vendu par
+            </th>
+          <th class="sortable col-md-2 sort-desc">
+            Montant total
+          </th>
+        </tr>
+      </thead>
+      <tbody class="clickable">
+        <tr *ngFor="let vente of mf.data"  [ngClass]="{info: idSelect.indexOf(vente.id) != -1}" (dblclick)="navigateDetailsVente(vente.id)">
+          <td>{{vente?.id}}</td>
+          <td>{{vente?.dateVente}}</td>
+          <td>{{vente?.employe}}</td>
+          <td>{{vente?.montantTotal}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

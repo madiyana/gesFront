@@ -1,0 +1,100 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+    <div class="row">
+      <span class="title-page">CREATION ARTICLE</span>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-primary" (click)="enregistrer()" type="button">
+      <span class="glyphicon glyphicon-saved" aria-hidden="true"></span> Enregister</button>
+        <button class="btn btn-default" (click)="vider()" type="button">
+      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Vider les champs</button>
+        <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+    </div>
+    <br />
+    <ol class="breadcrumb">
+        <li>Article</li>
+        <li class="active"> Création</li>
+    </ol>
+
+    <div class="row">
+        <!-- creation des articles  -->
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">TVA</label>
+                            <div class="col-sm-3">
+                                <input type="checkbox" [(ngModel)]="article.tva" name="tva">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label [hidden]="isPageModif" class="col-sm-2 control-label" >Article sans référence ?</label>
+                            <div [hidden]="isPageModif" class="col-sm-3">
+                                <input type="checkbox" (change)="checkSelected($event)" [(ngModel)]="refCheck" name="check">
+                            </div>
+                            <label class="col-sm-2 control-label">Référence</label>
+                            <div class="col-sm-3">
+                                <input type="text" [(ngModel)]="article.reference" [disabled]="isEditabble" class="form-control" name="nom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Désignation
+                <span style="color : red">*</span>
+              </label>
+                            <div class="col-sm-3">
+                                <input type="text" [(ngModel)]="article.nom" class="form-control" name="nom">
+                            </div>
+                            <label class="col-sm-2 control-label">Catégorie
+                <span style="color : red">*</span>
+              </label>
+                            <div class="col-sm-3">
+                                <ng-select [items]="categories" bindLabel="nom" placeholder="Choisissez une catégorie" [(ngModel)]="article.categorie"></ng-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Prix d'achat
+                <span style="color : red">*</span>
+              </label>
+                            <div class="col-sm-3">
+                                <input type="text" [(ngModel)]="article.prixAchat" class="form-control" name="prixAchat">
+                            </div>
+                            <label class="col-sm-2 control-label">Prix de vente
+                <span style="color : red">*</span>
+              </label>
+                            <div class="col-sm-3">
+                                <input type="text" [(ngModel)]="article.prixVenteHT" class="form-control" name="prixVenteHT">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Seuil critique
+                <span style="color : red">*</span>
+              </label>
+                            <div class="col-sm-3">
+                                <input type="seuilCritique" [(ngModel)]="article.seuilCritique" class="form-control" name="seuilCritique">
+                            </div>
+                            <label class="col-sm-2 control-label">Unité de mesure
+                <span style="color : red">*</span>
+              </label>
+                            <div class="col-sm-3">
+                                <ng-select [items]="unitsMesure" bindLabel="nom" placeholder="Choisissez votre unité de mesure" [(ngModel)]="article.uniteMesure">
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Rayon
+                          </label>
+                            <div class="col-sm-3">
+                                <ng-select [items]="rayon" bindLabel="nom" placeholder="Choisissez un Rayon" [(ngModel)]="article.rayon"></ng-select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                    </div>
+                    <!--  </div> -->
+                </div>
+            </div>
+        </div>
+    </div>

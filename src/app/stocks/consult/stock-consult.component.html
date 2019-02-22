@@ -1,0 +1,84 @@
+<div class="col-xs-20" *ngIf="stock">
+    <div class="row">
+        <span class="title-page">CONSULTATION STOCK ARTICLE</span>
+      </div>
+  <div class="btn-group" role="group" aria-label="...">
+    <button class="btn btn-default" (click)="modifier()" type="button">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</button>
+    <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+  </div>
+  <br />
+  <br />
+  <ol class="breadcrumb">
+    <li>Fournisseur</li>
+    <li class="active">Consultation</li>
+  </ol>
+  <div class="panel panel-info">
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-element">
+              <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Commande :</label>
+              <p class="form-control-static nice-margin col-lg-6 col-md-3 col-sm-4 col-xs-8">
+                <span class="comment">N° commande : {{stock.commandes.id}}, commandé par <b>{{stock?.commandes?.employes?.prenom}} {{stock?.commandes?.employes?.nom}}</b></span>
+              </p>
+            </div>
+        </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Catégorie :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.articles.categorie.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Article :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.articles.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Fournisseur :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.fournisseurs.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Quantité :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.quantite}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Date d'entrée :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.dateEntree}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Nb.Art.Defect :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.nbArticlesDefectueux}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Quantité réelle :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.quantiteReelle}}</span>
+          </p>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Observation :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{stock.observation}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

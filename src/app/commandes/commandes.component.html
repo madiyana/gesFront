@@ -1,0 +1,92 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20" *ngIf="!commandes">
+    <span class="title-page">LISTE DES COMMANDES</span>
+   <div class="row">
+    <div class="col-xs-20 pgd-toolbar">
+      <div class="btn-group" role="group" aria-label="....">
+        <button class="btn btn-default" (click)="creer()" type="submit">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Créer</button>
+        <button class="btn btn-default" (click)="consulterLigneSelectionne()" type="submit">
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Consulter</button>
+        <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#exampleModal">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer</button>
+        <button class="btn btn-default" (click)="idSelect = []" type="submit">
+          <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Déselectionner</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="text" class="form-control" [(ngModel)]="texteRecherche" name="texteRecherche" placeholder="Recherche" />
+     <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+      <thead>
+        <tr>
+          <th class="sortable col-md-2 sort-desc">
+            <mfDefaultSorter by="no">Numéro</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            <mfDefaultSorter by="dateCommand">Date création commande</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            <mfDefaultSorter by="etatCommande">Etat commande</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            <mfDefaultSorter by="observation">Observation</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+            <mfDefaultSorter by="observation">Commandé par :</mfDefaultSorter>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="clickable">
+        <tr *ngFor="let commande of mf.data" (click)="ligneSelect(commande.id)" (dblclick)="afficher(commande.id)" [ngClass]="{info: idSelect.indexOf(commande.id) != -1}"
+            [ngStyle]="{'background-color':commande.etatCommande === 'ANNULE' ? '#ffb2b2  ' : '' }">
+          <td>{{commande.id}}</td>
+          <td>{{commande.dateCommande}}</td>
+           <td>
+            <span class="comment" *ngIf="commande.etatCommande == 'EN_COURS'">En cours</span>
+            <span class="comment" *ngIf="commande.etatCommande == 'ANNULE'">Annulé</span>
+            <span class="comment" *ngIf="commande.etatCommande == 'ENVOYE'">Envoyé</span>
+            <span class="comment" *ngIf="commande.etatCommande == 'RECEPT'">Réceptionné</span>
+          </td>
+          <td>{{commande.observation}}</td>
+          <td>{{commande?.employes?.prenom}}{{commande?.employes?.nom}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    *ngIf="this.idSelect.length > 0">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Suppression commande</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="this.idSelect.length == 1">
+          Voulez vous supprimer cette commande ?
+        </div>
+        <div class="modal-body" *ngIf="this.idSelect.length > 1">
+          Voulez vous supprimer ces commandes ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="supprimer()" data-dismiss="modal">Oui</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

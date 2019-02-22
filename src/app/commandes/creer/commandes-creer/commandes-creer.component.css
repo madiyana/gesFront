@@ -1,0 +1,12 @@
+.selected {
+	background-color:black;
+	color:white;
+	font-weight:bold;
+}
+
+.center {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+    border: 1px solid green;
+}
