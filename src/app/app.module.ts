@@ -54,9 +54,9 @@ import { VenteComponent } from './vente/vente.component';
 import { ClavierComponent } from './vente/clavier/clavier.component';
 import { EncaisseComponent } from './vente/encaisse/encaisse.component';
 import { RuptureComponent } from './stocks/rupture/rupture.component';
-import { ListeVentesComponent } from './vente/liste-ventes/liste-ventes.component'
-;
-import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/details-vente.component'
+import { ListeVentesComponent } from './vente/liste-ventes/liste-ventes.component';
+import { AnnulVenteComponent } from './vente/annul-vente/annul-vente.component';
+import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/details-vente.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -103,7 +103,8 @@ import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/detail
         EncaisseComponent ,
         RuptureComponent ,
         ListeVentesComponent ,
-        DetailsVenteComponent],
+        DetailsVenteComponent,
+        AnnulVenteComponent],
     providers: [
         AuthGuard,
         ArticlesService,

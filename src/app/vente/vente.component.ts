@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArticlesService } from '../_services/articles.service';
 import { LigneArticle } from '../_models/ligneArticle';
 import { AuthenticationService } from '../_services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vente',
@@ -20,7 +21,8 @@ export class VenteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private articleService: ArticlesService,
-    private authentificationService: AuthenticationService
+    private authentificationService: AuthenticationService,
+    private router: Router
   ) {
     this.initGroup();
   }
@@ -120,5 +122,9 @@ export class VenteComponent implements OnInit {
 
   autoFocusInput() {
     this.firstNameElement.nativeElement.focus();
+  }
+
+  navigateAnnul() {
+    this.router.navigate(['/ventes/annulVente']);
   }
 }

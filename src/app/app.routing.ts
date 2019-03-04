@@ -30,6 +30,7 @@ import { VenteComponent } from './vente/vente.component';
 import { RuptureComponent } from './stocks/rupture/rupture.component';
 import { ListeVentesComponent } from './vente/liste-ventes/liste-ventes.component';
 import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/details-vente.component';
+import { AnnulVenteComponent } from './vente/annul-vente/annul-vente.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -59,10 +60,12 @@ const appRoutes: Routes = [
     { path: 'rayons/consult', component: RayonsConsultComponent, canActivate: [AuthGuard] },
     { path: 'rayons/creer', component: RayonsCreerComponent, canActivate: [AuthGuard] },
     { path: 'listeVente', component: ListeVentesComponent, canActivate: [AuthGuard] },
-    { path: 'detailVente/:idVente', component: DetailsVenteComponent },
+    { path: 'detailVente/:idVente', component: DetailsVenteComponent, canActivate: [AuthGuard] },
+
 
     // Interface user
     { path: 'ventes', component: VenteComponent, canActivate: [AuthGuard] },
+    { path: 'ventes/annulVente', component: AnnulVenteComponent, canActivate: [AuthGuard] },
 
 
     // otherwise redirect to home

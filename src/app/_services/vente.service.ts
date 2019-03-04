@@ -47,7 +47,18 @@ export class VenteService {
     const param = new HttpParams()
     .set('dateDebut', dateDebut)
     .set('dateFin', dateFin);
-    return this.http.get(this.API_URL + '/ventes/searchVente', {headers: headers, params: param});  }
+    return this.http.get(this.API_URL + '/ventes/searchVente', {headers: headers, params: param});
+ }
+
+ delete(idVente, idLigne): any {
+ const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  headers.append('Authorization', 'Bearer ' + this.token);
+  const param = new HttpParams()
+  .set('idLigne', idLigne)
+  .set('idVente', idVente);
+  return this.http.delete(this.API_URL + '/ventes/deleteLigneArticleVente', {headers: headers, params: param});
+}
+
 
 
 }

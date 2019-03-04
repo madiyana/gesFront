@@ -1,0 +1,55 @@
+<div class="col-xs-20">
+    <button type="button" class="btn btn-primary" (click)="backToVente()">Retour Vente</button>&nbsp;
+    <span class="title-page">Recherche ventes</span>
+<hr />
+<div class="row">
+    <form (submit)="searchVenteDetails()">
+    <div class="col-xs-4">
+      <input type="text" class="form-control" [(ngModel)]="numeroVente" name="numeroVente" placeholder="Numero du ticket de vente" />
+    </div>
+    <div class="col-xs-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!numeroVente">Rechercher</button>
+      </div>
+    </form>
+  </div>
+  <hr />
+  <div class="row">
+    <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+     <thead>
+       <tr>
+         <th class="sortable col-md-2 sort-desc">
+           Article
+         </th>
+         <th class="sortable col-md-2 sort-desc">
+           Référence
+         </th>
+         <th class="sortable col-md-2 sort-desc">
+             Prix unitaire
+          </th>
+         <th class="sortable col-md-2 sort-desc">
+           Quantité
+         </th>
+         <th class="sortable col-md-2 sort-desc">
+          Supp
+        </th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let vente of mf.data; let index = index"  [ngClass]="{info: idSelect.indexOf(vente.id) != -1}">
+         <td>{{vente?.nom}}</td>
+         <td>{{vente?.reference}}</td>
+         <td>{{vente?.prix}}</td>
+         <td>{{vente?.quantite}}</td>
+         <td><span style="color: red; cursor: pointer" (click)="removeArticle(vente.id)">X</span></td>
+       </tr>
+     </tbody>
+     <tfoot>
+       <tr>
+         <td colspan="10">
+           <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+         </td>
+       </tr>
+     </tfoot>
+   </table>
+ </div>
+</div>
