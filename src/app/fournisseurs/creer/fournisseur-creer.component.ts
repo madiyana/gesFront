@@ -43,7 +43,7 @@ export class FournisseurCreerComponent implements OnInit {
             this.router.navigate(['fournisseur/consult']);
           },
           error => {
-            this.alertService.error(error.error);
+            this.alertService.error('Erreur technique lors de l\'enregistrement');
           });
     } else {
       this.alertService.error('Le nom ou la raison sociale du fournisseur est obligatoire');

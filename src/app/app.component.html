@@ -1,7 +1,7 @@
 ﻿<div id="wrapper" *ngIf="authentificationService.isAuthenticated();else login">
     <nav class="navbar-default navbar-static-side" role="navigation" >
-      <span style="color: antiquewhite; font-weight: bolder; text-align: center">{{infoUser}}
-        </span>
+      <label style="color: antiquewhite; font-weight: bolder; text-align: right; font-size: 18px">{{infoUser}}
+      </label>
         <div class="sidebar-collapse" *ngIf="authentificationService.getProfilUSer() === 'admin'">
             <!-- mod Menu vertical fixe gauche -->
             <ul class="nav metismenu" id="side-menu">
@@ -11,20 +11,13 @@
                     </span>
                     <div class="logo-element">D+</div>
                 </li>
-                <li>
-                    <!-- Dashboard -->
-                    <a href="tbord.html">
-                        <i class="fa fa-th-large"></i>
+                <li [routerLinkActive]="['active']">
+                  <!-- Dashboard -->
+                    <a [routerLink]="['/dashboard']">
+                      <i class="fa fa-tachometer" aria-hidden="true"></i>
                         <span class="nav-label">Tableau de bord</span>
                     </a>
                 </li>
-                <li [routerLinkActive]="['active']">
-                  <a [routerLink]="['/listeVente']">
-                      <i class="fa fa-th-large"></i>
-                      <span class="nav-label">Ventes</span>
-                  </a>
-                </li>
-
                 <li [routerLinkActive]="['active']">
                     <a [routerLink]="['/articles']" >
                         <i class="fa fa-qrcode"></i>
@@ -67,16 +60,27 @@
                     </a>
                     <ul class="nav nav-second-level"></ul>
                 </li>
-                <li [routerLinkActive]="['active']">
-                    <a [routerLink]="['/stocks']">
-                    <i class="fa fa-spinner"></i>
-                    <span class="nav-label">Stocks</span></a>
+                <li>
+                    <a href="#"><i class="fa fa-spinner"></i> <span class="nav-label">Stocks</span></a>
                     <ul class="nav nav-second-level">
-                        <li><a [routerLink]="['/stocks/ruptureStock']">Rupture de stock</a></li>
+                        <li><a [routerLink]="['/stocks']">stocks</a></li>
+                        <li><a [routerLink]="['/stocks/ruptureStock']">Articles en rupture</a></li>
+                        <li><a [routerLink]="['/retourArticle']">Retour articles</a></li>
+
                     </ul>
                 </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/uniteMesure']">
+                      <i class="fa fa-balance-scale"></i><span class="nav-label">Unité de mesure</span>
+                    </a>
+                    <ul class="nav nav-second-level"></ul>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/listeVente']">
+                        <i class="fa fa-th-large"></i> <span class="nav-label">Ventes</span>
+                    </a>
+                  </li>
             </ul>
-
         </div>
     </nav>
     <div id="page-wrapper" class="gray-bg">
@@ -90,8 +94,8 @@
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
                         <button type="button" class=" btn btn-danger btn-md" (click)="logout(authentificationService.infoUser())">
-                                <span class="glyphicon glyphicon-log-out"></span> Deconnexion
-                            </button>
+                          <span class="glyphicon glyphicon-log-out"></span> Déconnexion
+                        </button>
                     </li>
                 </ul>
             </nav>

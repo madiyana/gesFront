@@ -1,0 +1,146 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <!-- Présentation du programme -->
+    <div class="col-md-12">
+      <div class="text-center m-t-md">
+        <h1>
+          ERP DEPOT / By Toubasoft
+        </h1>
+        <small> </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Icone d'information générale du dashboard -->
+
+    <div class="col-sm-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Chiffre d'affaire</h5>
+          </div>
+        <div class="ibox-content">
+          <div class="row">
+              <div class="col-md-4">
+                <h1 class="no-margins">{{caJour}} Fcfa</h1>
+                <div class="font-bold text-navy ">
+                    <small>CA du jour</small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                  <h1 class="no-margins">{{caMois}} Fcfa</h1>
+                  <div class="font-bold text-navy ">
+                      <small>CA du mois</small>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <h1 class="no-margins">{{caAnnee}} Fcfa</h1>
+                  <div class="font-bold text-navy ">
+                      <small>CA année en cours</small>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <!-- <span class="label label-primary pull-right">Semaine</span> -->
+          <h5>Top des ventes d'articles du mois</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="no-margins" *ngIf="articlePopular[0]">{{articlePopular[0]?.nbArticle}}</h1>
+              <h1 class="no-margins" *ngIf="!articlePopular[0]">0</h1>
+              <div class="font-bold text-navy">
+                <!-- <i class="fa fa-level-up"></i> -->
+                <small *ngIf="articlePopular[0]">{{articlePopular[0]?.nom}}</small>
+                <small *ngIf="!articlePopular[0]">En attente</small>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <h1 class="no-margins" *ngIf="articlePopular[1]">{{articlePopular[1]?.nbArticle}}</h1>
+                <h1 class="no-margins" *ngIf="!articlePopular[1]">0</h1>
+                <div class="font-bold text-navy">
+                  <!-- <i class="fa fa-level-up"></i> -->
+                  <small *ngIf="articlePopular[1]">{{articlePopular[1]?.nom}}</small>
+                  <small *ngIf="!articlePopular[1]">En attente 1</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h1 class="no-margins" *ngIf="articlePopular[2]">{{articlePopular[2]?.nbArticle}}</h1>
+                <h1 class="no-margins" *ngIf="!articlePopular[2]">0</h1>
+                <div class="font-bold text-navy">
+                  <!-- <i class="fa fa-level-up"></i> -->
+                  <small *ngIf="articlePopular[2]">{{articlePopular[2]?.nom}}</small>
+                  <small *ngIf="!articlePopular[2]">En attente 2</small>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Icone d'information générale du dashboard -->
+
+    <div class="col-sm-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Commandes</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="no-margins">{{nbCommandeRecu}}</h1>
+              <div class="font-bold text-navy ">
+                  <small>commande(s) reçu(s)</small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h1 class="no-margins">{{nbCommandeEnCours}}</h1>
+              <div class="font-bold text-navy ">
+                 <small>commande(s) en cours</small>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <h1 class="no-margins">{{nbCommandeEnvoye}}</h1>
+                <div class="font-bold text-navy ">
+                   <small>commande(s) envoyé(s)</small>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <span class="label label-danger pull-right">Semaine</span>
+          <h5>urgence</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="no-margins text-danger">1.500.000</h1>
+              <div class="font-bold text-danger">
+                <i class="fa fa-level-up"></i> <small>Total impayés</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h1 class="no-margins text-navy">900.000</h1>
+              <div class="font-bold text-navy">
+                <i class="fa fa-level-up"></i> <small>Total payé</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,7 +48,7 @@ export class CommandesConsultComponent implements OnInit {
   }
 
   /**
-   * Affichage de la liste des commandes
+   * Affichage de la commandes
    */
   retourListe() {
     this.router.navigate(["commandes"]);
@@ -73,7 +73,7 @@ export class CommandesConsultComponent implements OnInit {
         this.alertService.success("Annulation de la commande effectué avec succés.");
       },
       error => {
-        console.log(error.error);
+        console.log('Erreur technique lors de l\'enregistrement');
         this.alertService.error("Erreur annulation commande");
       });
   }
@@ -93,7 +93,7 @@ export class CommandesConsultComponent implements OnInit {
           //this.router.navigate(["categories/consult"]);
         },
         error => {
-          console.log(error.error);
+          console.log('Erreur technique lors de l\'enregistrement');
           this.alertService.error("Erreur creation commande");
         });
     }
@@ -110,12 +110,12 @@ export class CommandesConsultComponent implements OnInit {
       this.commandeService.create(this.commande).subscribe(
         data => {
           this.alertService.success("Commande receptionnée avec succés.");
-          // Mise en stock de tous les articles 
+          // Mise en stock de tous les articles
           this.miseEnStockCommande(data);
           this.router.navigate["commandes"]
         },
         error => {
-          console.log(error.error);
+          console.log('Erreur technique lors de l\'enregistrement');
           this.alertService.error("Erreur creation commande");
         });
     }
@@ -123,16 +123,16 @@ export class CommandesConsultComponent implements OnInit {
 
   /**
    * Mise en estock des qrticles des qu'il sont receptionnés
-   * @param commande 
+   * @param commande
    */
   miseEnStockCommande(commande: Commandes) {
     this.stockService.createStockCommande(this.commande).subscribe(
       data => {
         this.alertService.success("Création des commandes dans le stock effectué avec succés.");
-        
+
       },
       error => {
-        console.log(error.error);
+        console.log('Erreur technique lors de l\'enregistrement');
         this.alertService.error("Erreur creation commande");
       });
   }

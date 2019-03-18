@@ -107,7 +107,7 @@ export class CategoriesComponent implements OnInit {
             });
           },
           error => {
-            this.alerteService.error(error.error);
+            this.alerteService.error('Erreur technique lors de l\'enregistrement');
           }
         );
       }

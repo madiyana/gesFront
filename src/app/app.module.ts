@@ -57,6 +57,16 @@ import { RuptureComponent } from './stocks/rupture/rupture.component';
 import { ListeVentesComponent } from './vente/liste-ventes/liste-ventes.component';
 import { AnnulVenteComponent } from './vente/annul-vente/annul-vente.component';
 import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/details-vente.component';
+import { UnitemesureCreerComponent } from './uniteMesure/creer/unitemesure-creer.component';
+import { UniteMesureComponent } from './uniteMesure/unite-mesure.component';
+import { UniteMesureConsultComponent } from './uniteMesure/consult/unite-mesure-consult.component';;
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RetourArticleComponent } from './stocks/retour-article/retour-article.component';
+import { UnitemesureService } from './_services/unitemesure.service';
+import { ArticleRetourService } from './_services/article-retour.service';
+import { CreerArticleRetourComponent } from './stocks/retour-article/creer/creer-article-retour.component';
+import { ConsultArticleRetourComponent } from './stocks/retour-article/consult/consult-article-retour.component';
+import { DashboardService } from './_services/dashboard.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -104,7 +114,14 @@ import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/detail
         RuptureComponent ,
         ListeVentesComponent ,
         DetailsVenteComponent,
-        AnnulVenteComponent],
+        AnnulVenteComponent,
+        UnitemesureCreerComponent,
+        UniteMesureComponent,
+        UniteMesureConsultComponent,
+        DashboardComponent,
+        RetourArticleComponent,
+        CreerArticleRetourComponent,
+        ConsultArticleRetourComponent      ],
     providers: [
         AuthGuard,
         ArticlesService,
@@ -116,6 +133,9 @@ import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/detail
         AuthenticationService,
         UserService,
         ReferenceService,
+        UnitemesureService,
+        ArticleRetourService,
+        DashboardService,
         RayonService,
         {
             provide: HTTP_INTERCEPTORS,

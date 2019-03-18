@@ -6,7 +6,7 @@ import { FournisseurService } from '../../../_services/fournisseurs.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Commandes } from '../../../_models/commandes';
 import { ArticleCommandes } from '../../../_models/articleCommandes';
-import * as _ from "lodash";
+import * as _ from 'lodash';
  import { CommandesService } from '../../../_services/commandes.service';
 import { EtatCommande } from '../../../_models/enumEtatCommande';
 import { AlertService } from 'angular-x-alerts';
@@ -20,8 +20,8 @@ export class CommandesCreerComponent implements OnInit {
 
   rowsOnPage = 5;
   activePage = 1;
-  sortBy = "no";
-  sortOrder = "asc";
+  sortBy = 'no';
+  sortOrder = 'asc';
   isArticleSelected: boolean;
   articleSelectedIndex: number;
   indexArticle: number;
@@ -43,9 +43,9 @@ export class CommandesCreerComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.page = localStorage.getItem("pageCommande");
-    this.idCommande = JSON.parse(localStorage.getItem("idCommande"));
-    if (this.page == "modif" && this.idCommande) {
+    this.page = localStorage.getItem('pageCommande');
+    this.idCommande = JSON.parse(localStorage.getItem('idCommande'));
+    if (this.page === 'modif' && this.idCommande) {
       this.commandeService.getById(this.idCommande).subscribe(
         data => {
           this.commande = data;
@@ -53,12 +53,12 @@ export class CommandesCreerComponent implements OnInit {
         }
       )
     }
-    this.commande.employes = JSON.parse(localStorage.getItem("currentUser"));
+    this.commande.employes = JSON.parse(localStorage.getItem('currentUser'));
     this.loadDataCreate();
   }
 
   /**
-   * Liste des fournisseurs et articles
+   * fournisseurs et articles
    */
   loadDataCreate() {
     this.articleService.getAll().subscribe(
@@ -84,7 +84,7 @@ export class CommandesCreerComponent implements OnInit {
         this.articleCommandeList.forEach(currentArticle => {
           if (currentArticle.fournisseurs.id != this.articleCommande.fournisseurs.id) {
             ajoutArticle = false;
-            this.alertService.error("Impossible de rajouter sur une commande des fournisseurs differents.");
+            this.alertService.error('Impossible de rajouter sur une commande des fournisseurs differents.');
             return;
           }
         });
@@ -96,7 +96,7 @@ export class CommandesCreerComponent implements OnInit {
       }
 
     } else {
-      this.alertService.error("Veuillez renseigner un article, fournisseur et nombre à commander.");
+      this.alertService.error('Veuillez renseigner un article, fournisseur et nombre à commander.');
     }
 
   }
@@ -118,12 +118,12 @@ export class CommandesCreerComponent implements OnInit {
     this.commande.etatCommande = EtatCommande.EN_COURS;
     this.commandeService.create(this.commande).subscribe(
       data => {
-        this.alertService.success("Commande enregistré avec succés.");
-        localStorage.setItem("idCommande", data.id.toString());
-        this.router.navigate(["commandes/consult"]);
+        this.alertService.success('Commande enregistré avec succés.');
+        localStorage.setItem('idCommande', data.id.toString());
+        this.router.navigate(['commandes/consult']);
       },
       error => {
-        this.alertService.error("Erreur creation commande");
+        this.alertService.error('Erreur creation commande');
       });
 
   }
@@ -133,19 +133,19 @@ export class CommandesCreerComponent implements OnInit {
    */
   envoyer() {
     if (this.articleCommandeList.length == 0) {
-      this.alertService.error("Veuillez rajouter un ou plusieurs article à commander avant envoi.");
+      this.alertService.error('Veuillez rajouter un ou plusieurs article à commander avant envoi.');
     } else {
       this.commande.articlesCommande = this.articleCommandeList;
       this.commande.etatCommande = EtatCommande.ENVOYE;
       this.commandeService.create(this.commande).subscribe(
        data => {
-         this.alertService.success("Commande envoyé avec succés.");
-         localStorage.setItem("idCommande", data.id.toString());
-         this.router.navigate(["commandes/consult"]);
+         this.alertService.success('Commande envoyé avec succés.');
+         localStorage.setItem('idCommande', data.id.toString());
+         this.router.navigate(['commandes/consult']);
        },
        error => {
-         console.log(error.error);
-         this.alertService.error("Erreur creation commande");
+         console.log('Erreur technique lors de l\'enregistrement');
+         this.alertService.error('Erreur creation commande');
        });
      }
   }
@@ -191,11 +191,12 @@ export class CommandesCreerComponent implements OnInit {
 
   /**
    * Verifier si les infos de la commande en cours est valide
-   * @param articleCommande 
+   * @param articleCommande
    */
   validiteArticleCommande(articleCommande: ArticleCommandes) {
 
-    return articleCommande.articles && articleCommande.fournisseurs && articleCommande.nbreArticleCommande;
+    // tslint:disable-next-line:max-line-length
+    return articleCommande.articles && articleCommande.fournisseurs && articleCommande.nbreArticleCommande && Number(articleCommande.nbreArticleCommande);
   }
 
   /**
@@ -211,6 +212,6 @@ export class CommandesCreerComponent implements OnInit {
    * Retour page accueil commande
    */
   retourListe() {
-    this.router.navigate(["commandes"]);
+    this.router.navigate(['commandes']);
   }
 }

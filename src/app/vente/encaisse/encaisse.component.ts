@@ -14,7 +14,11 @@ export class EncaisseComponent implements OnInit {
   get montantTotal() {
     return this._montantTotal;
 }
-
+showCb = false;
+showEsp = false;
+showChq = false;
+showJoni = false;
+showOM = false;
 @Input('montantTotal')
 set montantTotal(montantTotal) {
     this._montantTotal = montantTotal;
@@ -28,7 +32,8 @@ set montantTotal(montantTotal) {
   constructor(fb: FormBuilder, private venteService: VenteService,
     private authenticationService: AuthenticationService) {
     this.group = fb.group({
-      montantEncaisse: [null]
+      montantEncaisse: [null],
+      codeOrangeMoney: [null]
     });
   }
 
@@ -39,6 +44,7 @@ set montantTotal(montantTotal) {
     this.group.reset({});
     this.montantTotal = 0;
     this.finishPay.emit();
+    this.initAllTypePaiement();
   }
   submit($event) {
     if (this.group.invalid) {
@@ -59,15 +65,40 @@ set montantTotal(montantTotal) {
   }
 
   cancelVente() {
-    if (confirm('Are you sure to cancel ')) {
+    if (confirm('Voulez vous annuler la vente en cours ? ')) {
       this.init();
     }
   }
 
-  payer() {
-    this.venteService.create(this.list, this.v.montantEncaisse, this.rendu, this.montantTotal, this.authenticationService.infoUser().id).subscribe(data => {
+  payer(typePaiement) {
+    // tslint:disable-next-line:max-line-length
+    console.log(typePaiement);
+  /*  this.venteService.create(this.list, typePaiement, this.v.montantEncaisse, this.rendu, this.montantTotal, this.authenticationService.infoUser().id).subscribe(data => {
       this.init();
-    });
+    });*/
+  }
 
+  initAllTypePaiement() {
+    this.showCb = false;
+    this.showEsp = false;
+    this.showChq = false;
+    this.showJoni = false;
+    this.showOM = false;
+  }
+  changeTypePaiement(type) {
+    this.initAllTypePaiement();
+    switch (type) {
+      case 'ESP':
+        this.showEsp = true;
+        break;
+      case 'OM':
+        this.showOM = true;
+        break;
+      case 'ESP':
+
+        break;
+      default:
+        break;
+    }
   }
 }

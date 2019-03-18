@@ -1,0 +1,72 @@
+<div class="col-xs-20" *ngIf="articleRetour">
+    <div class="row">
+        <span class="title-page">CONSULTATION ARTICLE RETOURNE</span>
+      </div>
+  <div class="btn-group" role="group" aria-label="...">
+    <button class="btn btn-default" (click)="modifier()" type="button">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</button>
+    <button class="btn btn-default" (click)="retourListe()" type="button">
+      <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Retour</button>
+  </div>
+  <br />
+  <br />
+  <ol class="breadcrumb">
+    <li>Article retourné</li>
+    <li class="active">Consultation</li>
+  </ol>
+  <div class="panel panel-info">
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-element">
+              <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Commande :</label>
+              <p class="form-control-static nice-margin col-lg-6 col-md-3 col-sm-4 col-xs-8" *ngIf="articleRetour.commandes;else noCommande">
+                <span class="comment">N° commande : {{articleRetour?.commandes?.id}}, commandé par <b>{{articleRetour?.commandes?.employes?.prenom}} {{articleRetour?.commandes?.employes?.nom}}</b></span>
+              </p>
+              <ng-template #noCommande>
+                  <span class="comment">Pas issu d'une commande</span>
+              </ng-template>
+            </div>
+        </div>
+      <div class="row">
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Catégorie :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{articleRetour?.articles?.categorie?.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Nom article :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{articleRetour?.articles?.nom}}</span>
+          </p>
+        </div>
+        <div class="form-element">
+            <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Référence :</label>
+            <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+              <span class="comment">{{articleRetour?.articles?.reference}}</span>
+            </p>
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-element">
+              <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Fournisseur :</label>
+              <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+                <span class="comment">{{articleRetour?.fournisseurs?.nom}}</span>
+              </p>
+            </div>
+            <div class="form-element">
+              <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Quantité :</label>
+              <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+                <span class="comment">{{articleRetour?.quantite}}</span>
+              </p>
+            </div>
+        <div class="form-element">
+          <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Commentaires :</label>
+          <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
+            <span class="comment">{{articleRetour?.commentaire}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

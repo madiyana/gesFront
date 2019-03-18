@@ -41,7 +41,7 @@
         <div class="form-element">
           <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Commandé par :</label>
           <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
-            <span class="comment">{{commande.employes.nom}} {{commande.employes.prenom}}</span>
+            <span class="comment">{{commande?.employes?.prenom}} {{commande?.employes?.nom}}</span>
           </p>
         </div>
       </div>
@@ -65,7 +65,7 @@
   </div>
   <div class="hr-line-dashed"></div>
   <div class="center">
-    <span style="width:100%;text-align:center;"> Liste des articles commandés</span>
+    <span style="width:100%;text-align:center;"> articles commandés</span>
   </div>
   <table class="table table-striped" [mfData]="commande.articlesCommande" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy"
     [(mfSortOrder)]="sortOrder">

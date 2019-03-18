@@ -47,7 +47,7 @@ export class RayonsCreerComponent implements OnInit {
           this.router.navigate(['rayons/consult']);
         },
         error => {
-          this.alertService.error(error.error);
+          this.alertService.error('Erreur technique lors de l\'enregistrement');
         });
     } else {
       this.alertService.error('Les champs obligatoires ne sont pas remplis !');

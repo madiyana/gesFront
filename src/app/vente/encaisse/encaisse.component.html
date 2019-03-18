@@ -1,19 +1,25 @@
-<form
-  [formGroup]="group"
-  id="encaisseForm"
-  (submit)="submit($event)"
-  [hidden]="montantTotal <= 0"
-><input
-    type="text"
-    style="width: 50%; font-size: 25px"
-    placeholder="Encaissement"
-    (input)="reste()"
-    formControlName="montantEncaisse"
-    [readonly]="montantTotal <= 0"
-  />
+<div [hidden]="montantTotal <= 0">
+    <h2 style="color: indigo; font-weight: bold; text-decoration: underline">Paiement </h2>
+    <img src="../assets/img/cardButtone.png" style="padding-right: 40px;" />
+    <img src="../assets/img/especes.png" style="padding-right: 40px;" (click)="changeTypePaiement('ESP')"/>
+    <img src="../assets/img/om.png" style="padding-right: 40px;" (click)="changeTypePaiement('OM')"/>
+    <img src="../assets/img/joniJoni.png" style="padding-right: 40px;"/>
+    <img src="../assets/img/cancel.png" style="padding-right: 40px;" (click)="cancelVente()"/>
 
-  <span *ngIf="rendu > 0" style="padding-left: 10px; font-size: 25px;"> Rendu : {{ rendu }} Fcfa </span>  <br />
+</div>
+<hr />
+<form [formGroup]="group" id="encaisseForm" (submit)="submit($event)" [hidden]="!showEsp || montantTotal <= 0">
+  <input type="text" style="width: 50%; font-size: 25px" placeholder="Encaissement" (input)="reste()" formControlName="montantEncaisse"/>
+
+  <span *ngIf="rendu > 0" style="padding-left: 10px; font-size: 25px;"> Rendu : {{ rendu }} Fcfa </span>
   <hr />
-  <button type="button" style="width: 30%" (click)="payer()" [disabled]="rendu < 0"  class="btn btn-lg btn-primary">PAYER</button>&nbsp;
-  <button type="button" style="width: 30%" (click)="cancelVente()" class="btn btn-danger btn-lg">ANNULER VENTE</button>&nbsp;
+  <button type="button" style="width: 20%" (click)="payer('ESPECE')" [disabled]="rendu < 0"  class="btn btn-lg btn-primary">PAYER</button>&nbsp;
+ <!-- <button type="button" style="width: 20%" (click)="cancelVente()" class="btn btn-danger btn-lg">ANNULER VENTE</button>&nbsp; -->
+</form>
+
+<form [formGroup]="group" id="encaisseFormOrangeMoney" (submit)="submit($event)" [hidden]="!showOM || montantTotal <= 0">
+    <input type="text" style="width: 50%; font-size: 25px" placeholder="code orange money" formControlName="codeOrangeMoney"/>
+    <hr />
+    <button type="button" style="width: 20%" (click)="payer('ORAN_MONEY')"  [disabled]="!this.v.codeOrangeMoney" class="btn btn-lg btn-primary">PAYER</button>&nbsp;
+   <!--  <button type="button" style="width: 20%" (click)="cancelVente()" class="btn btn-danger btn-lg">ANNULER VENTE</button>&nbsp; -->
 </form>

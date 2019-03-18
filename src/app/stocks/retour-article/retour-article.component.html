@@ -1,0 +1,100 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+  <span class="title-page">ARTICLES RETOURNES</span>
+  <div class="row">
+    <div class="col-xs-20 pgd-toolbar">
+      <div class="btn-group" role="group" aria-label="....">
+        <button class="btn btn-default" (click)="creer()" type="submit">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Créer</button>
+        <button class="btn btn-default" (click)="consulterLigneSelectionne()" type="submit">
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Consulter</button>
+          <button class="btn btn-danger" type="submit" data-toggle="modal" data-target="#exampleModal">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer</button>
+        <button class="btn btn-default" (click)="idSelect = []" type="submit">
+          <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Déselectionner</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="text" class="form-control" [(ngModel)]="texteRecherche" name="texteRecherche" placeholder="Recherche" />
+     <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+      <thead>
+        <tr>
+          <th class="sortable col-md-1 sort-desc">
+            <mfDefaultSorter by="numero">Numéro</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-1 sort-desc">
+              <mfDefaultSorter by="categorie">Catégorie</mfDefaultSorter>
+            </th>
+          <th class="sortable col-md-1 sort-desc">
+            <mfDefaultSorter by="article">Nom article</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-1 sort-desc">
+              <mfDefaultSorter by="reference">Référence</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-1 sort-desc">
+              <mfDefaultSorter by="commande">Commande</mfDefaultSorter>
+            </th>
+          <th class="sortable col-md-1 sort-desc">
+            <mfDefaultSorter by="fournisseur">Fournisseurs</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-1 sort-desc">
+            <mfDefaultSorter by="quantite">Qté retournés</mfDefaultSorter>
+          </th>
+          <th class="sortable col-md-2 sort-desc">
+              <mfDefaultSorter by="comment">Commentaire</mfDefaultSorter>
+            </th>
+        </tr>
+      </thead>
+      <tbody class="clickable">
+        <tr *ngFor="let articleRetour of mf.data" (click)="ligneSelect(articleRetour.id)" (dblclick)="afficher(articleRetour.id)" [ngClass]="{info: idSelect.indexOf(articleRetour.id) != -1}"
+          [ngStyle]="">
+          <td>{{articleRetour.id}}</td>
+          <td>{{articleRetour?.categorie}}</td>
+          <td>{{articleRetour?.nomArticle}}</td>
+          <td>{{articleRetour?.reference}}</td>
+          <td>{{articleRetour?.commande}}</td>
+          <td>{{articleRetour?.fournisseur}}</td>
+          <td>{{articleRetour?.quantite}}</td>
+          <td>{{articleRetour?.commentaire}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,15,20,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+
+  <!-- Modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    *ngIf="this.idSelect.length > 0">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Suppression article retourné</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="this.idSelect.length == 1">
+          Voulez vous supprimer cet article ?
+        </div>
+        <div class="modal-body" *ngIf="this.idSelect.length > 1">
+          Voulez vous supprimer ces articles ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="supprimer()" data-dismiss="modal">Oui</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

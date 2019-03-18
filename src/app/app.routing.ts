@@ -31,6 +31,13 @@ import { RuptureComponent } from './stocks/rupture/rupture.component';
 import { ListeVentesComponent } from './vente/liste-ventes/liste-ventes.component';
 import { DetailsVenteComponent } from './vente/liste-ventes/details-vente/details-vente.component';
 import { AnnulVenteComponent } from './vente/annul-vente/annul-vente.component';
+import { UniteMesureComponent } from './uniteMesure/unite-mesure.component';
+import { UnitemesureCreerComponent } from './uniteMesure/creer/unitemesure-creer.component';
+import { UniteMesureConsultComponent } from './uniteMesure/consult/unite-mesure-consult.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RetourArticleComponent } from './stocks/retour-article/retour-article.component';
+import { CreerArticleRetourComponent } from './stocks/retour-article/creer/creer-article-retour.component';
+import { ConsultArticleRetourComponent } from './stocks/retour-article/consult/consult-article-retour.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -41,27 +48,33 @@ const appRoutes: Routes = [
     { path: 'articles/creer', component: ArticleCreerComponent, canActivate: [AuthGuard]},
     { path: 'articles/consult', component: ArticleConsultComponent, canActivate: [AuthGuard]},
     { path: 'commandes', component: CommandesComponent, canActivate: [AuthGuard] },
-    { path: 'commandes/consult', component: CommandesConsultComponent },
+    { path: 'commandes/consult', component: CommandesConsultComponent, canActivate: [AuthGuard] },
     { path: 'commandes/creer', component: CommandesCreerComponent , canActivate: [AuthGuard]},
     { path: 'employes', component: EmployesComponent, canActivate: [AuthGuard] },
     { path: 'employes/consult', component: EmployeConsultComponent },
     { path: 'employes/creer', component: EmployeCreerComponent },
     { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
-    { path: 'categories/consult', component: CategorieConsultComponent },
-    { path: 'categories/creer', component: CategorieCreerComponent },
+    { path: 'categories/consult', component: CategorieConsultComponent, canActivate: [AuthGuard] },
+    { path: 'categories/creer', component: CategorieCreerComponent, canActivate: [AuthGuard] },
     { path: 'fournisseurs', component: FournisseursComponent, canActivate: [AuthGuard] },
-    { path: 'fournisseur/consult', component: FournisseurConsultComponent },
-    { path: 'fournisseur/creer', component: FournisseurCreerComponent },
+    { path: 'fournisseur/consult', component: FournisseurConsultComponent, canActivate: [AuthGuard]  },
+    { path: 'fournisseur/creer', component: FournisseurCreerComponent, canActivate: [AuthGuard] },
     { path: 'stocks', component: StocksComponent, canActivate: [AuthGuard] },
-    { path: 'stocks/consult', component: StockConsultComponent },
-    { path: 'stocks/creer', component: StockCreerComponent },
-    { path: 'stocks/ruptureStock', component: RuptureComponent },
+    { path: 'stocks/consult', component: StockConsultComponent, canActivate: [AuthGuard] },
+    { path: 'stocks/creer', component: StockCreerComponent, canActivate: [AuthGuard] },
+    { path: 'stocks/ruptureStock', component: RuptureComponent, canActivate: [AuthGuard] },
     { path: 'rayons', component: RayonsComponent, canActivate: [AuthGuard] },
     { path: 'rayons/consult', component: RayonsConsultComponent, canActivate: [AuthGuard] },
     { path: 'rayons/creer', component: RayonsCreerComponent, canActivate: [AuthGuard] },
     { path: 'listeVente', component: ListeVentesComponent, canActivate: [AuthGuard] },
     { path: 'detailVente/:idVente', component: DetailsVenteComponent, canActivate: [AuthGuard] },
-
+    { path: 'uniteMesure', component: UniteMesureComponent, canActivate: [AuthGuard] },
+    { path: 'uniteMesure/consult', component: UniteMesureConsultComponent, canActivate: [AuthGuard] },
+    { path: 'uniteMesure/creer', component: UnitemesureCreerComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'retourArticle', component: RetourArticleComponent, canActivate: [AuthGuard] },
+    { path: 'retourArticle/creer', component: CreerArticleRetourComponent, canActivate: [AuthGuard] },
+    { path: 'retourArticle/consult', component: ConsultArticleRetourComponent, canActivate: [AuthGuard] },
 
     // Interface user
     { path: 'ventes', component: VenteComponent, canActivate: [AuthGuard] },
@@ -69,6 +82,6 @@ const appRoutes: Routes = [
 
 
     // otherwise redirect to home
-    { path: '**', redirectTo: 'articles' }
+    { path: '**', redirectTo: 'dashboard' }
 ];
 export const routing = RouterModule.forRoot(appRoutes, { useHash: true });

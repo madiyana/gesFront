@@ -11,7 +11,7 @@
   <br />
   <br />
   <ol class="breadcrumb">
-    <li>Fournisseur</li>
+    <li>Stocks</li>
     <li class="active">Consultation</li>
   </ol>
   <div class="panel panel-info">
@@ -19,9 +19,12 @@
         <div class="row">
             <div class="form-element">
               <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Commande :</label>
-              <p class="form-control-static nice-margin col-lg-6 col-md-3 col-sm-4 col-xs-8">
-                <span class="comment">N° commande : {{stock.commandes.id}}, commandé par <b>{{stock?.commandes?.employes?.prenom}} {{stock?.commandes?.employes?.nom}}</b></span>
+              <p class="form-control-static nice-margin col-lg-6 col-md-3 col-sm-4 col-xs-8" *ngIf="stock.commandes;else noCommande">
+                <span class="comment">N° commande : {{stock?.commandes?.id}}, commandé par <b>{{stock?.commandes?.employes?.prenom}} {{stock?.commandes?.employes?.nom}}</b></span>
               </p>
+              <ng-template #noCommande>
+                  <span class="comment">Pas issu d'une commande</span>
+              </ng-template>
             </div>
         </div>
       <div class="row">
@@ -66,7 +69,7 @@
         <div class="form-element">
           <label class="control-label nice-margin col-lg-1 col-md-3 col-sm-4 col-xs-4">Quantité réelle :</label>
           <p class="form-control-static nice-margin col-lg-2 col-md-3 col-sm-4 col-xs-8">
-            <span class="comment">{{stock.quantiteReelle}}</span>
+            <span class="comment">{{stock.quantite - stock.nbArticlesDefectueux}}</span>
           </p>
         </div>
 

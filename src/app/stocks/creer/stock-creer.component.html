@@ -56,7 +56,7 @@
               </label>
               <div class="col-sm-3">
                 <div class="input-group">
-                  <input type="text" #input1 placeholder="jour" maxlength="2" (input)="onInputEntry($event, input2)" [(ngModel)]="jour" class="form-control"
+                  <input type="text" #input1 placeholder="jour"  maxlength="2" (input)="onInputEntry($event, input2)" [(ngModel)]="jour" class="form-control"
                     style="width: 30%">
                   <input type="text" #input2 placeholder="mois" maxlength="2" (input)="onInputEntry($event, input3)" [(ngModel)]="mois" class="form-control"
                     style="width: 30%">
@@ -70,7 +70,7 @@
                 <span style="color : red">*</span>
               </label>
               <div class="col-sm-3">
-                <input type="text" [(ngModel)]="stock.nbArticlesDefectueux" class="form-control" name="nbArticlesDefectueux">
+                <input type="text" [(ngModel)]="stock.nbArticlesDefectueux" class="form-control" name="nbArticlesDefectueux" mask="00000000">
               </div>
               <label class="col-sm-2 control-label">Observation</label>
               <div class="col-sm-3">

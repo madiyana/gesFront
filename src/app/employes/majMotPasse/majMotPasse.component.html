@@ -5,13 +5,8 @@
     </div>
     <div>
         <h3>Bienvenue à DIWAAN+ </h3>
-        <h3 style="color: white">Veuillez mettre à jour de votre mot de passe.</h3>
-
+        <h4 style="color: white">Veuillez mettre à jour de votre mot de passe.</h4>
          <form class="m-t" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
-            <!--<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !identifiant.valid }">
-                <input type="text" [disabled]=true class="form-control" name="identifiant" [(ngModel)]="employes.identifiant" #identifiant="ngModel"
-                    required />
-             </div>-->
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                 <input type="password" class="form-control" name="password" [(ngModel)]="model.password" placeholder="Nouveau mot de passe" #password="ngModel"
                     required />
@@ -23,12 +18,13 @@
                 <div *ngIf="f.submitted && !password1.valid" class="help-block"><strong style="color:red">Mot de passe est obligatoire</strong></div>
             </div>
             <div class="form-group">
-                    <button (click)="updatePassword()" type="submit" class="btn btn-primary">Valider</button>
-                     <a [routerLink]="['/login']" class="btn btn-danger">Annuler</a>
-                </div>
+              <button (click)="updatePassword()" type="submit" class="btn btn-primary" style="width: 40%">Valider</button> &nbsp;&nbsp;
+              <button (click)="backToLogin()"  class="btn btn-danger" style="width: 40%">Retour</button>
+
+            </div>
         </form>
         <p class="m-t">
-            <small>Une Application développée par Toubasoft&copy;2017</small>
+            <small>Une Application développée par Toubasoft</small>
         </p>
     </div>
 </div>

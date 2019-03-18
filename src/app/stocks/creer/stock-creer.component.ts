@@ -16,6 +16,7 @@ import { Commandes } from '../../_models/commandes';
 import { ArticleCommandes } from '../../_models/articleCommandes';
 import { EtatCommande } from '../../_models/enumEtatCommande';
 import { AlertService } from 'angular-x-alerts';
+import { DateValidator } from '../../_utils/dateValidator';
 
 @Component({
   selector: 'app-stock-creer',
@@ -47,9 +48,9 @@ export class StockCreerComponent implements OnInit {
 
   ngOnInit() {
     // Faire mise a jour dans cette page ==> Recupere id
-    this.page = localStorage.getItem("pageStock");
-    this.idStock = JSON.parse(localStorage.getItem("idStock"));
-    if (this.page == "modif" && this.idStock) {
+    this.page = localStorage.getItem('pageStock');
+    this.idStock = JSON.parse(localStorage.getItem('idStock'));
+    if (this.page === 'modif' && this.idStock) {
       this.stockService.getById(this.idStock).subscribe(
         data => {
           this.stock = data;
@@ -57,7 +58,7 @@ export class StockCreerComponent implements OnInit {
           this.mois = this.stock.dateEntree.slice(3, 5);
           this.annee = this.stock.dateEntree.slice(6, 10);
         }
-      )
+      );
     }
 
     this.loadDataCreate();
@@ -72,14 +73,13 @@ export class StockCreerComponent implements OnInit {
       }
     )
 
-    // Load Unit mesure
+    // Load all fournisseurs
     this.fournisseursService.getAll().subscribe(
       data => {
         this.fournisseurs = data;
       }
     )
     // Recuperer les commande receptionné
-    // Load Unit mesure
     this.commandeSercie.getCommandeStatus(EtatCommande.RECEPT).subscribe(
       data => {
         this.commandes = data;
@@ -88,24 +88,32 @@ export class StockCreerComponent implements OnInit {
   }
 
   enregistrer() {
-    this.stock.dateEntree = this.jour + "/" + this.mois + "/" + this.annee;
+    this.stock.dateEntree = this.jour + '/' + this.mois + '/' + this.annee;
     if (Stocks.verifyInput(this.stock)) {
       // Check if  date is OK
+      if (!Number(this.stock.quantite) || !Number(this.stock.nbArticlesDefectueux)) {
+        this.alertService.error('La quantité / et nombre article defectueux doivent être un nombre.');
+        return;
+      }
+      if (!DateValidator.isValidDate(this.jour, this.mois, this.annee)) {
+        this.alertService.error('La date n\'est pas valide.');
+        return;
+      }
       this.stockService.create(this.stock).subscribe(
         data => {
-          localStorage.setItem("idStock", data.id.toString());
-          this.router.navigate(["stocks/consult"]);
+          localStorage.setItem('idStock', data.id.toString());
+          this.router.navigate(['stocks/consult']);
         },
         error => {
-          this.alertService.error(error.error);
+          this.alertService.error('Erreur technique lors de l\'enregistrement');
         });
     } else {
-      this.alertService.error("Les champs obligatoires ne sont pas remplis.");
+      this.alertService.error('Les champs obligatoires ne sont pas remplis.');
     }
   }
 
   retourListe() {
-    this.router.navigate(["stocks"]);
+    this.router.navigate(['stocks']);
   }
 
   vider() {
@@ -122,9 +130,9 @@ export class StockCreerComponent implements OnInit {
   }
 
   onInputEntry(event, nextInput) {
-    let input = event.target;
-    let length = input.value.length;
-    let maxLength = input.attributes.maxlength.value;
+    const input = event.target;
+    const length = input.value.length;
+    const maxLength = input.attributes.maxlength.value;
 
     if (length >= maxLength) {
       nextInput.focus();
@@ -137,7 +145,7 @@ export class StockCreerComponent implements OnInit {
         data => {
           this.articles = data;
         }, error => {
-          this.alertService.error(error.error);
+          this.alertService.error('Erreur technique lors de l\'enregistrement');
         }
       )
 
@@ -146,18 +154,15 @@ export class StockCreerComponent implements OnInit {
         data => {
           this.fournisseurs = data;
         }, error => {
-          this.alertService.error(error.error);
+          this.alertService.error('Erreur technique lors de l\'enregistrement');
         }
-      )
-    }else{
+      );
+    } else {
       this.initList();
     }
   }
 
   initList() {
-    this.stock.articles = null;
-    this.stock.fournisseurs = null;
-      this.articles = [];
-    this.fournisseurs = [];
+    this.loadDataCreate();
   }
 }

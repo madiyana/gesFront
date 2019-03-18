@@ -7,7 +7,7 @@ export class Rayon {
     }
 
     static verifyInput(rayon: Rayon) {
-        if (rayon.nom == null || rayon.nom == "") {
+        if (!rayon.nom) {
             return false;
         }
         return true;

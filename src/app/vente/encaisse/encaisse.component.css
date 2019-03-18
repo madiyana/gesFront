@@ -11,3 +11,14 @@
 hr {
   color: black;
 }
+
+
+.buttonPaiement {
+  background-color: #2f4050;
+  border-color: #f7f4f133;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  width: 25%; height: 100px;
+}
+

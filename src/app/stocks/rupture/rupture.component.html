@@ -1,7 +1,7 @@
 <ngx-alert></ngx-alert>
 
-<div class="col-xs-20" *ngIf="!stock">
-  <span id="title-page">LISTE DES ARTCLES EN RUPTURE DE STOCK</span>
+<div class="col-xs-20">
+  <span id="title-page">ARTCLES EN RUPTURE DE STOCK</span>
 
   <div class="row">
      <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">

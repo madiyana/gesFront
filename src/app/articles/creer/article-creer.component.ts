@@ -4,12 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CategorieService } from '../../_services/categories.service';
  import { ArticlesService } from '../../_services/articles.service';
 import { Categories } from '../../_models/categories';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { ReferenceService } from '../../_services/reference.service';
 import { UniteMesure } from '../../_models/uniteMesure';
-import { SelectModule } from 'ng2-select';
 import { AlertService } from 'angular-x-alerts';
 import { RayonService } from '../../_services/rayons.service';
+import { UnitemesureService } from '../../_services/unitemesure.service';
 
 @Component({
   selector: 'app-article-creer',
@@ -34,7 +32,7 @@ export class ArticleCreerComponent implements OnInit {
     private alertService: AlertService,
     private categorieService: CategorieService,
     private rayonService: RayonService,
-    private referenceService: ReferenceService,
+    private uniteMesureService: UnitemesureService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -64,7 +62,7 @@ export class ArticleCreerComponent implements OnInit {
     );
 
     // Load Unit mesure
-    this.referenceService.getAllUniteMesure().subscribe(
+    this.uniteMesureService.getAll().subscribe(
       data => {
         this.unitsMesure = data;
       }
@@ -86,13 +84,17 @@ export class ArticleCreerComponent implements OnInit {
       this.alertService.error('Veuillez remplir la référence de l\'artice');
     } else {
       if (Articles.verifyInput(this.article)) {
+        if (!Number(this.article.prixAchat) || !Number(this.article.prixVenteHT) || !Number(this.article.seuilCritique)) {
+          this.alertService.error('Le prix achat, vente et seuil critique doivent etre des chiffres');
+          return;
+        }
       this.articleService.create(this.article).subscribe(
          data => {
            localStorage.setItem('idArticle', data.id.toString());
            this.router.navigate(['articles/consult']);
          },
          error => {
-           this.alertService.error(error.error);
+           this.alertService.error('Erreur technique lors de l\'enregistrement');
          });
      }else {
        this.alertService.error('Veuillez remplir les champs obligatoires');

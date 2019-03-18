@@ -26,14 +26,13 @@ export class Stocks {
   }
 
   static verifyInput(stock: Stocks) {
-    console.log(stock);
     if (
       stock.articles == null ||
       stock.fournisseurs == null ||
       stock.quantite == null ||
       stock.dateEntree == null ||
       stock.nbArticlesDefectueux == null ||
-      stock.dateEntree == ''
+      stock.dateEntree === ''
     ) {
       return false;
     }

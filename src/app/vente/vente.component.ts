@@ -127,4 +127,5 @@ export class VenteComponent implements OnInit {
   navigateAnnul() {
     this.router.navigate(['/ventes/annulVente']);
   }
+
 }

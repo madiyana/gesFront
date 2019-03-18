@@ -58,7 +58,7 @@
           <td>{{stock.fournisseurs.nom}}</td>
           <td>{{stock.quantite}}</td>
           <td>{{stock.nbArticlesDefectueux}}</td>
-          <td>{{stock.quantiteReelle}}</td>
+          <td>{{stock.quantite -stock.nbArticlesDefectueux}}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -88,7 +88,7 @@
           Voulez vous supprimer ce stock ?
         </div>
         <div class="modal-body" *ngIf="this.idSelect.length > 1">
-          Voulez vous supprimer ces fournisseurs ?
+          Voulez vous supprimer ces stocks ?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" (click)="supprimer()" data-dismiss="modal">Oui</button>
