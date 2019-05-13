@@ -12,12 +12,17 @@
                     <div class="logo-element">D+</div>
                 </li>
                 <li [routerLinkActive]="['active']">
-                  <!-- Dashboard -->
                     <a [routerLink]="['/dashboard']">
                       <i class="fa fa-tachometer" aria-hidden="true"></i>
                         <span class="nav-label">Tableau de bord</span>
                     </a>
                 </li>
+                <li [routerLinkActive]="['active']">
+                  <a [routerLink]="['/parametres']">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                      <span class="nav-label">Paramètres</span>
+                  </a>
+              </li>
                 <li [routerLinkActive]="['active']">
                     <a [routerLink]="['/articles']" >
                         <i class="fa fa-qrcode"></i>

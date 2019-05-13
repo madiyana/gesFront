@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   caMois = 0;
   caAnnee = 0;
 
-  articlePopular: any;
+  articlePopular: any[] = [];
 
 
   constructor(

@@ -1,0 +1,65 @@
+<ngx-alert></ngx-alert>
+
+<div class="col-xs-20">
+    <div class="row">
+        <span class="title-page">PARAMETRAGE MAGASINS</span>
+      </div>
+  <div class="btn-group" role="group">
+    <button class="btn btn-primary" (click)="enregistrer()" type="button">
+      <span class="glyphicon glyphicon-saved" aria-hidden="true"></span> Enregister</button>
+  </div>
+  <br />
+  <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+       <div class="ibox-content">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Nom
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="parametres.nom" class="form-control" name="nom" required>
+
+              </div>
+              <label class="col-sm-2 control-label">Adresse
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="parametres.adresse" class="form-control" name="adresse" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Code postal
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                  <input type="text" [(ngModel)]="parametres.adresseSuite" class="form-control" name="adresseSuite" required>
+              </div>
+              <label class="col-sm-2 control-label">Téléphone
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="parametres.telephone" class="form-control" name="telephone" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Imprimante
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="parametres.imprimante" class="form-control" name="imprimante" required>
+              </div>
+
+              <label class="col-sm-2 control-label">Message foot
+                <span style="color : red">*</span>
+              </label>
+              <div class="col-sm-3">
+                <input type="text" [(ngModel)]="parametres.messageFoot" class="form-control" name="messageFoot" required>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+          </div>
+        </div>
+  </div>
+  </div>
+ </div>

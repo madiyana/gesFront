@@ -72,10 +72,9 @@ set montantTotal(montantTotal) {
 
   payer(typePaiement) {
     // tslint:disable-next-line:max-line-length
-    console.log(typePaiement);
-  /*  this.venteService.create(this.list, typePaiement, this.v.montantEncaisse, this.rendu, this.montantTotal, this.authenticationService.infoUser().id).subscribe(data => {
+   this.venteService.create(this.list, this.v.montantEncaisse, this.rendu, this.montantTotal, this.authenticationService.infoUser().id, typePaiement).subscribe(data => {
       this.init();
-    });*/
+    });
   }
 
   initAllTypePaiement() {

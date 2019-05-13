@@ -66,7 +66,9 @@ import { UnitemesureService } from './_services/unitemesure.service';
 import { ArticleRetourService } from './_services/article-retour.service';
 import { CreerArticleRetourComponent } from './stocks/retour-article/creer/creer-article-retour.component';
 import { ConsultArticleRetourComponent } from './stocks/retour-article/consult/consult-article-retour.component';
-import { DashboardService } from './_services/dashboard.service';
+import { DashboardService } from './_services/dashboard.service';;
+import { ParametresComponent } from './parametres/parametres.component'
+import { ParametreService } from './_services/parametre.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -121,7 +123,8 @@ import { DashboardService } from './_services/dashboard.service';
         DashboardComponent,
         RetourArticleComponent,
         CreerArticleRetourComponent,
-        ConsultArticleRetourComponent      ],
+        ConsultArticleRetourComponent ,
+        ParametresComponent     ],
     providers: [
         AuthGuard,
         ArticlesService,
@@ -136,6 +139,7 @@ import { DashboardService } from './_services/dashboard.service';
         UnitemesureService,
         ArticleRetourService,
         DashboardService,
+        ParametreService,
         RayonService,
         {
             provide: HTTP_INTERCEPTORS,

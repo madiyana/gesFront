@@ -38,6 +38,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RetourArticleComponent } from './stocks/retour-article/retour-article.component';
 import { CreerArticleRetourComponent } from './stocks/retour-article/creer/creer-article-retour.component';
 import { ConsultArticleRetourComponent } from './stocks/retour-article/consult/consult-article-retour.component';
+import { ParametresComponent } from './parametres/parametres.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -75,6 +76,8 @@ const appRoutes: Routes = [
     { path: 'retourArticle', component: RetourArticleComponent, canActivate: [AuthGuard] },
     { path: 'retourArticle/creer', component: CreerArticleRetourComponent, canActivate: [AuthGuard] },
     { path: 'retourArticle/consult', component: ConsultArticleRetourComponent, canActivate: [AuthGuard] },
+    { path: 'parametres', component: ParametresComponent, canActivate: [AuthGuard] },
+
 
     // Interface user
     { path: 'ventes', component: VenteComponent, canActivate: [AuthGuard] },

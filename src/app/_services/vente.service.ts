@@ -72,4 +72,8 @@ export class VenteService {
     });
   }
 
+  generateTicket(ventes) {
+
+  }
+
 }
